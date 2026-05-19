@@ -7,7 +7,12 @@
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
     "build": "npm run install-server && npm run install-client && npm run build-client",
-    "start": "cd server && node index.js"
+    "start": "cd server && node index.js",
+    "deploy:frontend": "npm run build-client && node scripts/deploy-infinityfree.js"
+  },
+  "devDependencies": {
+    "basic-ftp": "^5.0.5",
+    "dotenv": "^16.4.5"
   },
   "engines": {
     "node": ">=18.0.0"

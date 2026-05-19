@@ -1,6 +1,8 @@
 const mysql = require('mysql2/promise');
 const fs = require('fs');
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const useSsl =
   process.env.DB_ENABLE_SSL === 'true' ||

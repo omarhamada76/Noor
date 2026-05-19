@@ -27,17 +27,17 @@ Bonto uses **Yarn only** — `npm install` is disabled in their containers.
 1. Sign up at [bonto.dev/register](https://bonto.dev/register) (no card).
 2. **New App** → connect GitHub → repo `omarhamada76/Noor`.
 3. Set app root / working directory to **`server`**.
-4. **Start command:** `yarn start` (not `npm install && npm start`).
+4. **Start command:** `npm run start` (Bonto blocks `npm install` and `yarn start`).
 5. Add environment variables in Bonto **Settings** (paste from `server/.env`, no FTP vars, no `PORT`).
 6. **Restart** the app.
 7. TiDB → **IP Access List** → allow `0.0.0.0/0` if connections fail.
 
-**Terminal on Bonto (if you need to run manually):**
+**Terminal on Bonto:**
 
 ```bash
 cd server
-yarn
-yarn start
+yarn          # installs packages (npm install is disabled)
+npm run start # runs the API (yarn start is not allowed)
 ```
 
 Test: `https://YOUR-APP.bonto.run/api/health` → `{"ok":true}`
