@@ -97,7 +97,7 @@ if (process.env.SERVE_CLIENT === 'true') {
 app.get('/', (req, res) => res.send('Noor API is running successfully.'));
 
 // Start Server and Initialize Database
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Noor Server running in environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`📡 Backend Listening on port ${PORT}`);
 
