@@ -1,6 +1,8 @@
 {
   "name": "noor-monorepo",
   "version": "1.0.0",
+  "private": true,
+  "workspaces": ["server"],
   "description": "Monorepo configuration for hosting Noor Page Builder in a single service",
   "scripts": {
     "install-server": "cd server && npm install",
