@@ -1,14 +1,60 @@
-# Deploy Noor: Backend (Render) + Frontend (InfinityFree)
+# Deploy Noor: Backend (API) + Frontend (InfinityFree)
 
 InfinityFree hosts **static files only** (HTML/CSS/JS). Your **Node.js API** must run elsewhere. TiDB Cloud stays as the database.
 
 ```
-[Browser] → InfinityFree (React app) → Render (Express API) → TiDB Cloud
+[Browser] → InfinityFree (React app) → API host (Express) → TiDB Cloud
 ```
 
 ---
 
-## Part 1 — Backend on Render (free)
+## Backend hosts that do NOT require a credit card
+
+| Service | Card? | Notes |
+|---------|-------|--------|
+| **[Bonto](https://bonto.dev/register)** | No | Node-focused, GitHub deploy, free subdomain `*.bonto.run` |
+| **[Zeabur](https://zeabur.com)** | No | GitHub deploy, auto-sleep on free tier |
+| Render / Fly.io / Koyeb | Yes | Card required for verification |
+
+Use the **same env vars** on any host (see below). After deploy, set `VITE_API_URL` in `client/.env.production` to your new API URL and run `npm run deploy:frontend`.
+
+---
+
+## Part 1A — Backend on Bonto (no card) — recommended
+
+Bonto uses **Yarn only** — `npm install` is disabled in their containers.
+
+1. Sign up at [bonto.dev/register](https://bonto.dev/register) (no card).
+2. **New App** → connect GitHub → repo `omarhamada76/Noor`.
+3. Set app root / working directory to **`server`**.
+4. **Start command:** `yarn start` (not `npm install && npm start`).
+5. Add environment variables in Bonto **Settings** (paste from `server/.env`, no FTP vars, no `PORT`).
+6. **Restart** the app.
+7. TiDB → **IP Access List** → allow `0.0.0.0/0` if connections fail.
+
+**Terminal on Bonto (if you need to run manually):**
+
+```bash
+cd server
+yarn
+yarn start
+```
+
+Test: `https://YOUR-APP.bonto.run/api/health` → `{"ok":true}`
+
+---
+
+## Part 1B — Backend on Zeabur (no card)
+
+1. Sign up at [zeabur.com](https://zeabur.com) (no card on free plan).
+2. **Create Project** → **Deploy from GitHub** → `Noor`.
+3. Select the **`server`** folder as the service root.
+4. Add env vars (table below), deploy.
+5. Copy the public URL Zeabur assigns.
+
+---
+
+## Part 1C — Backend on Render (free, card required)
 
 ### 1. Push code to GitHub
 
@@ -80,7 +126,7 @@ cp .env.production.example .env.production
 Edit `client/.env.production`:
 
 ```env
-VITE_API_URL=https://YOUR-SERVICE.onrender.com
+VITE_API_URL=https://YOUR-API-HOST.com
 ```
 
 Build:

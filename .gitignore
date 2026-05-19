@@ -1,4 +1,7 @@
 node_modules/
+server/node_modules/
+server/.yarn/
+server/.pnp.*
 dist/
 .env
 .env.local
