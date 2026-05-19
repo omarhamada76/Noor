@@ -21,7 +21,19 @@ const corsOrigins = process.env.FRONTEND_URL
 
 // Middleware
 app.use(cors({ origin: corsOrigins, credentials: true }));
-app.get('/api/health', (_req, res) => res.json({ ok: true }));
+app.get('/api/health', async (_req, res) => {
+  try {
+    await db.query('SELECT 1');
+    res.json({ ok: true, db: 'connected' });
+  } catch (err) {
+    res.status(500).json({ 
+      ok: false, 
+      db: 'disconnected', 
+      error: err.message, 
+      code: err.code 
+    });
+  }
+});
 app.use(express.json({ limit: '10mb' })); // Support larger HTML content payload
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 

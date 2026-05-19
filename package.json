@@ -2,7 +2,9 @@
   "name": "noor-monorepo",
   "version": "1.0.0",
   "private": true,
-  "workspaces": ["server"],
+  "workspaces": [
+    "server"
+  ],
   "description": "Monorepo configuration for hosting Noor Page Builder in a single service",
   "scripts": {
     "install-server": "cd server && npm install",
@@ -13,7 +15,7 @@
     "deploy:frontend": "npm run build-client && node scripts/deploy-infinityfree.js"
   },
   "devDependencies": {
-    "basic-ftp": "^5.0.5",
+    "basic-ftp": "^5.3.1",
     "dotenv": "^16.4.5"
   },
   "engines": {
