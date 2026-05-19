@@ -93,12 +93,17 @@ if (process.env.SERVE_CLIENT === 'true') {
   });
 }
 
-// Initialize Database and Start Server
-initDatabase().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Noor Server running in environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`📡 Backend Listening on port ${PORT}`);
+// Simple root route for health checking
+app.get('/', (req, res) => res.send('Noor API is running successfully.'));
+
+// Start Server and Initialize Database
+app.listen(PORT, () => {
+  console.log(`🚀 Noor Server running in environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📡 Backend Listening on port ${PORT}`);
+
+  initDatabase().then(() => {
+    console.log('✅ Database initialized successfully.');
+  }).catch(err => {
+    console.error('❌ Failed to initialize database:', err);
   });
-}).catch(err => {
-  console.error('❌ Failed to initialize database. Server not started:', err);
 });
