@@ -1,0 +1,22 @@
+-- Noor Page Builder - Database Schema
+
+CREATE DATABASE IF NOT EXISTS noor_db;
+USE noor_db;
+
+-- 1. Users Table (Admin Credentials)
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL
+);
+
+-- 2. Pages Table (Landing Page Content & Analytics)
+CREATE TABLE IF NOT EXISTS pages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  slug VARCHAR(100) UNIQUE NOT NULL,
+  title VARCHAR(255),
+  html_content LONGTEXT NOT NULL,
+  views INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

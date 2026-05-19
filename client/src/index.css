@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0f172a; /* Slate 900 */
+    color: #cbd5e1; /* Slate 300 */
+    font-family: 'Tajawal', 'Outfit', 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  input, textarea, select {
+    font-family: inherit;
+  }
+}
+
+/* Minimalist Clean Panel Card */
+.glass {
+  background: #1e293b; /* Slate 800 */
+  border: 1px solid rgba(148, 163, 184, 0.12); /* Slate 400 with opacity */
+  border-radius: 20px;
+}
+
+.glass-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.glass-hover:hover {
+  background: #273549;
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.glow-primary {
+  /* Simple flat shadow instead of colorful glow */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.glow-secondary {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Premium Workbench Fonts */
+.editor-font {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Subtle animation helpers */
+.hover-scale {
+  transition: all 0.15s ease-in-out;
+}
+.hover-scale:hover {
+  transform: translateY(-1px);
+}
+.hover-scale:active {
+  transform: translateY(0);
+}
+
+/* Custom premium input focus states */
+.premium-input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+}
+.premium-input:focus {
+  border-color: #3b82f6; /* Blue 500 */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+  background: #0f172a;
+  outline: none;
+}
+
+/* Custom minimal scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

@@ -1,0 +1,33 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# Deploy: New → Blueprint → connect this repo, or create Web Service manually with rootDir=server
+
+services:
+  - type: web
+    name: noor-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_ENABLE_SSL
+        value: true
+      - key: SERVE_CLIENT
+        value: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 4000
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: noor_db
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
